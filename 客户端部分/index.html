@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数据可视化项目</title>
+  <link rel="stylesheet" href="fonts/icomoon.css" />
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/smoothness/jquery-ui.css">
+  <script src="js/echarts.min.js"></script>
+  <script src="js/flexible.js"></script>
+  <script src="js/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- 父容器大盒子 -->
+  <div class="viewport">
+    <div class="column">
+      <!-- 各省疫情列表模块 -->
+      <div class="panel ranking">
+        <div class="inner">
+          <h3>各省新增列表</h3>
+          <div class="content">
+            <div class="head">
+              <span class="col">序号</span>
+              <span class="col">地区</span>
+              <span class="col">有症状</span>
+              <span class="col">无症状</span>
+            </div>
+            <div class="marquee-viem">
+              <div id="marq" class="marquee">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 重点城市监测模块 -->
+      <div class="panel recently">
+        <div class="inner">
+          <h3>重点城市监测</h3>
+          <div class="top10-view">
+            <div class="top10"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+
+      <!-- 地图模块 -->
+      <div class="map">
+        <!-- <h3>
+          <span class="icon-cube"></span>
+          疫情地图
+        </h3> -->
+        <div class="chart">
+          <div class="geo"></div>
+        </div>
+      </div>
+
+      <!-- 日期模块 -->
+      <div class="panel count">
+        <div class="inner">
+          <div id="timer"></div>
+          <!-- 滑块模块 -->
+          <div id="slider"></div>
+          <div id="date"></div>
+          <div class="btn">
+            <button id="startBtn">开始</button>
+            <button id="stopBtn">暂停</button>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <!-- 疫情新闻模块 -->
+      <div class="panel news">
+        <div class="inner">
+          <h3>疫情新闻模块</h3>
+          <div class="content">
+            <div class="head">
+              <span class="col">日期</span>
+              <!-- <h4 class="col">日期</span> -->
+              <span class="col">新闻列表</span>
+            </div>
+            <div class="marquee-viem">
+              <div id="marq" class="marquee">
+
+                <div class="row">
+                  <span class="col">2022.6.6</span>
+                  <a href="https://baijiahao.baidu.com/s?id=1734865742009983598&wfr=spider&for=pc" target="_blank"
+                    class="col">根据发布会内容，最新疫情研判！
+                    <p>国务院联防联控机制于6月5日召开新闻发布会，介绍做好全国高校学生离校返乡工作有关情况...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.5</span>
+                  <a href="http://www.gov.cn/fuwu/2022-06/06/content_5694169.htm" target="_blank" class="col">6月5日疫情防控最新消息！
+                    <p>国务院联防联控机制：坚决防止一刀切和层层加码等现象...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.5</span>
+                  <a href="https://www.bilibili.com/video/av597197755/?vd_source=822e9e345d110ed14bcb79c0afbf05cf" target="_blank"
+                    class="col">疫情地区学生返乡八条硬核建议
+                    <p>
+                      一、要了解各种地方政策，提前向地方报备；
+                      二、一定 一定要带上吃的，特别是需要隔夜中转的；
+                      三、要全方位多方面地打听
+                      ...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.4</span>
+                  <a href="http://news.cctv.com/2022/06/04/ARTIg4JOgeGvZxNxRRXdtx49220604.shtml" target="_blank" class="col">北京疫情持续稳定向好
+                    进入扫尾阶段
+                    <p>6月4日，在北京市新型冠状病毒肺炎疫情防控工作第355场新闻发布会上...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.3</span>
+                  <a href="http://news.cctv.com/2022/06/03/ARTIYpBJZlALA4hR8mECLXzY220603.shtml" target="_blank"
+                    class="col">北京本轮疫情感染者中老年人占比较高
+                    <p>今天（6月3日）下午，北京市召开新冠肺炎疫情防控工作第354场新闻发布会，介绍疫情防控最新情况...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.1</span>
+                  <a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjQ0Ng==&mid=2651429786&idx=5&sn=0b75f100b0a6326e61427b69cfdcf2c3&chksm=f3de408bc4a9c99d8590cb83fc156856b0d78c91d80df7d918ee9fc674ddd47f95845505ad80&scene=27" target="_blank"
+                    class="col">吕梁市疫情防控办发布最新通告
+                    <p>当前，全国疫情呈点状散发态势，疫情防控形势依然严峻。随着“端午”假期的临近...</p>
+                  </a>
+                </div>
+
+                <!-- 复制一份儿 -->
+                <div class="row">
+                  <span class="col">2022.6.6</span>
+                  <a href="https://baijiahao.baidu.com/s?id=1734865742009983598&wfr=spider&for=pc" target="_blank"
+                    class="col">根据发布会内容，最新疫情研判！
+                    <p>国务院联防联控机制于6月5日召开新闻发布会，介绍做好全国高校学生离校返乡工作有关情况...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.5</span>
+                  <a href="http://www.gov.cn/fuwu/2022-06/06/content_5694169.htm" target="_blank" class="col">6月5日疫情防控最新消息！
+                    <p>国务院联防联控机制：坚决防止一刀切和层层加码等现象...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.5</span>
+                  <a href="https://www.bilibili.com/video/av597197755/?vd_source=822e9e345d110ed14bcb79c0afbf05cf" target="_blank"
+                    class="col">疫情地区学生返乡八条硬核建议
+                    <p>
+                      一、要了解各种地方政策，提前向地方报备；
+                      二、一定 一定要带上吃的，特别是需要隔夜中转的；
+                      三、要全方位多方面地打听
+                      ...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.4</span>
+                  <a href="http://news.cctv.com/2022/06/04/ARTIg4JOgeGvZxNxRRXdtx49220604.shtml" target="_blank" class="col">北京疫情持续稳定向好
+                    进入扫尾阶段
+                    <p>6月4日，在北京市新型冠状病毒肺炎疫情防控工作第355场新闻发布会上...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.3</span>
+                  <a href="http://news.cctv.com/2022/06/03/ARTIYpBJZlALA4hR8mECLXzY220603.shtml" target="_blank"
+                    class="col">北京本轮疫情感染者中老年人占比较高
+                    <p>今天（6月3日）下午，北京市召开新冠肺炎疫情防控工作第354场新闻发布会，介绍疫情防控最新情况...</p>
+                  </a>
+                </div>
+                <div class="row">
+                  <span class="col">2022.6.1</span>
+                  <a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjQ0Ng==&mid=2651429786&idx=5&sn=0b75f100b0a6326e61427b69cfdcf2c3&chksm=f3de408bc4a9c99d8590cb83fc156856b0d78c91d80df7d918ee9fc674ddd47f95845505ad80&scene=27" target="_blank"
+                    class="col">吕梁市疫情防控办发布最新通告
+                    <p>当前，全国疫情呈点状散发态势，疫情防控形势依然严峻。随着“端午”假期的临近...</p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 新增趋势模块 -->
+      <div class="sales panel">
+        <div class="inner">
+          <div class="caption">
+            <h3>疫情变化趋势</h3>
+
+          </div>
+          <div class="chart">
+            <div class="line"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 想使用中国地图必须先引用这个china.js文件 -->
+  <script src="js/china.js"></script>
+  <script src="js/index.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
+</body>
+
+</html>

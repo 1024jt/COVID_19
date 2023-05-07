@@ -1,0 +1,509 @@
+/*清除元素默认的内外边距  */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/*让所有斜体 不倾斜*/
+em,
+i {
+  font-style: normal;
+}
+
+/*去掉列表前面的小点*/
+li {
+  list-style: none;
+}
+
+/*图片没有边框   去掉图片底侧的空白缝隙*/
+img {
+  border: 0;
+  /*ie6*/
+  vertical-align: middle;
+}
+
+/*让button 按钮 变成小手*/
+button {
+  cursor: pointer;
+}
+
+/*取消链接的下划线*/
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #e33333;
+}
+
+h4 {
+  font-weight: 400;
+}
+
+body {
+  background: url(../images/bg.jpg) no-repeat 0 0 / cover;
+  /* background-size: cover; */
+}
+
+/* // 实现rem适配 */
+@media screen and (max-width: 1024px) {
+  html {
+    font-size: 42.66px !important;
+  }
+}
+
+@media screen and (min-width: 1920px) {
+  html {
+    font-size: 80px !important;
+  }
+}
+
+.viewport {
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  margin: 0 auto;
+  padding: 1.1rem 0.25rem 0;
+  background: url(../images/logo1.png) no-repeat 0 0 / contain;
+  min-height: 780px;
+}
+
+.viewport .column {
+  flex: 3;
+}
+
+.viewport .column:nth-child(2) {
+  flex: 4;
+  margin: 0.4rem 0.25rem 0;
+}
+
+/* 公共面板样式  */
+.panel {
+  position: relative;
+  border: 15px solid transparent;
+  border-width: 0.6375rem 0.475rem 0.25rem 1.65rem;
+  border-image-source: url(../images/border.png);
+  border-image-slice: 51 38 20 132;
+  margin-bottom: 0.25rem;
+}
+
+.inner {
+  /* background-color: pink; */
+  position: absolute;
+  top: -0.6375rem;
+  left: -1.65rem;
+  right: -0.475rem;
+  bottom: -0.25rem;
+  padding: 0.3rem 0.45rem;
+}
+
+.panel h3 {
+  font-size: 0.25rem;
+  color: #fff;
+  font-weight: 400;
+  border-bottom-style: solid;
+  border-width: .0625rem;
+  border-bottom-color: rgb(9, 60, 118);
+}
+
+/* 疫情热点城市排行模块 */
+.ranking {
+  height: 6.5rem;
+}
+
+.ranking .content {
+  flex: 1;
+  position: relative;
+}
+
+/* 列表头部设计 */
+.ranking .head {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.05;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.15rem 0.45rem;
+  color: #68d8fe;
+  font-size: 0.175rem;
+}
+
+/* 列表内容  */
+.ranking .head .col:first-child {
+  width: .5rem;
+}
+
+.ranking .head .col:nth-child(2) {
+  width: .5rem;
+}
+
+.ranking .head .col:nth-child(3) {
+  width: .7rem;
+}
+
+.ranking .head .col:nth-child(4) {
+  width: .7rem;
+}
+
+.ranking .marquee-view {
+  top: 0.5rem;
+  bottom: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.ranking .marquee-viem {
+  height: 5rem;
+  overflow: hidden;
+}
+
+.ranking .marquee .row .col:first-child {
+  width: .5rem;
+}
+
+.ranking .marquee .row .col:nth-child(2) {
+  width: .7rem;
+}
+
+.ranking .marquee .row .col:nth-child(3) {
+  width: .7rem;
+}
+
+.ranking .marquee .row .col:nth-child(4) {
+  width: .7rem;
+}
+
+.ranking .row {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.05;
+  font-size: 0.21rem;
+  color: #61a8ff;
+  padding: 0.15rem 0.45rem;
+}
+
+.ranking .row .icon-dot {
+  position: absolute;
+  left: 0.2rem;
+  opacity: 0;
+}
+
+/* 鼠标悬停事件，改变颜色 */
+.ranking .row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #68d8fe;
+}
+
+.ranking .row:hover .icon-dot {
+  opacity: 1;
+}
+
+.ranking .col:first-child {
+  width: 0.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* css3动画向上滚动列表 */
+@keyframes rowup {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(0, -11.7rem, 0);
+  }
+}
+
+/* 调用动画，并设置参数 */
+.marquee-viem .marquee {
+  animation: 17s rowup linear infinite normal;
+
+}
+
+.marquee-viem .marquee:hover {
+  animation-play-state: paused;
+}
+
+
+/* 重点城市监测模块 */
+.recently {
+  height: 3rem;
+}
+
+.recently .top10-view {
+  height: 2.5rem;
+}
+
+.recently .top10 {
+  position: relative;
+  bottom: 0.55rem;
+  height: 3rem;
+}
+
+/* 地图模块制作 */
+.map {
+  height: 6.8rem;
+  margin-bottom: 0.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.map h3 {
+  line-height: 1;
+  padding: 0.2rem 0;
+  margin: 0;
+  font-size: 0.25rem;
+  color: #fff;
+  font-weight: 400;
+}
+
+.map .icon-cube {
+  color: #68d8fe;
+}
+
+.map .chart {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.map .geo {
+  width: 100%;
+  height: 100%;
+}
+
+/* 滑块模块 */
+#slider {
+  width: 100%;
+  margin: 0 auto;
+}
+
+
+
+#slider {
+  height: 10px;
+  background-image: linear-gradient(to right, #1cb5e0, #000046);
+  border-radius: 5px;
+}
+
+.ui-slider-handle {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #007bff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+}
+
+.ui-slider-range {
+  background-color: #007bff;
+}
+
+/* 日期模块制作 */
+.count {
+  height: 2.3rem;
+}
+
+#timer {
+  height: 0.9rem;
+  align-content: center;
+  font-size: .6rem;
+  text-align: center;
+  color: aliceblue;
+}
+
+.count .btn {
+  margin: 0.2rem;
+  height: 0.5rem;
+  align-content: center;
+  text-align: center;
+
+}
+
+.count button {
+  top: 50%;
+  left: 50%;
+  background-color: #0c98d4;
+  color: black;
+  font-size: .2rem;
+  padding: .1rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-align: center;
+}
+
+
+.count button:hover {
+  background-color: rgb(41, 42, 56);
+  color: white;
+}
+
+
+/* 新闻模块制作 */
+.news {
+  height: 5rem;
+}
+
+.news .content {
+  flex: 1;
+  position: relative;
+}
+
+.news .head {
+  display: flex;
+  justify-content: flex-start;
+  line-height: 1.05;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 0.15rem 0.45rem;
+  color: #68d8fe;
+  font-size: 0.175rem;
+}
+
+.news .head .col:first-child {
+  width: 2rem;
+}
+
+.news .head .col:nth-child(2) {
+  width: 1rem;
+}
+
+
+.news .marquee-viem {
+  height: 3.5rem;
+  overflow: hidden;
+}
+
+.news .marquee .row .col:first-child {
+  width: 1.5rem;
+}
+
+.news .marquee .row .col:nth-child(2) {
+  width: 5rem;
+}
+
+
+.news .row {
+  display: flex;
+  justify-content: space-between;
+  line-height: 1.05;
+  font-size: 0.21rem;
+  color: #61a8ff;
+  padding: 0.15rem 0.15rem;
+}
+
+.news .marquee-viem a {
+  color: rgb(248, 124, 7);
+}
+
+.news .marquee-viem a:hover {
+  color: rgb(231, 54, 54);
+}
+
+.news .marquee-viem p {
+  margin-top: .05rem;
+  font-size: .17rem;
+  color: #938e8e;
+}
+
+
+.news .row .icon-dot {
+  position: absolute;
+  left: 0.2rem;
+  opacity: 0;
+}
+
+.news .row:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #68d8fe;
+}
+
+.news .row:hover .icon-dot {
+  opacity: 1;
+}
+
+.news .col:first-child {
+  width: 0.5rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+/* css3动画向上滚动列表 */
+@keyframes rowupp {
+  0% {
+    /* -webkit-transform: translate3d(0, 0, 0); */
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    /* -webkit-transform: translate3d(0, -6.5rem, 0); */
+    transform: translate3d(0, -5rem, 0);
+  }
+}
+
+.news .marquee-viem .marquee {
+  /* -webkit-animation: 10s rowup linear infinite normal; */
+  animation: 13s rowupp linear infinite normal;
+  /* position: relative; */
+}
+
+.news .marquee-viem .marquee:hover {
+  animation-play-state: paused;
+}
+
+
+/* 新增趋势模块制作 */
+.sales {
+  height: 4.5rem;
+}
+
+.sales .caption {
+  display: flex;
+  line-height: 1;
+}
+
+.sales a {
+  padding: 0.05rem;
+  font-size: 0.2rem;
+  margin: -0.0375rem 0 0 0.2625rem;
+  border-radius: 0.0375rem;
+  color: #0bace6;
+}
+
+.sales a.active {
+  background-color: #4c9bfd;
+  color: #fff;
+}
+
+.sales .inner {
+  display: flex;
+  flex-direction: column;
+}
+
+.sales .chart {
+  flex: 1;
+  padding-top: 0.1875rem;
+  position: relative;
+}
+
+.sales .label {
+  position: absolute;
+  left: 0.525rem;
+  top: 0.225rem;
+  color: #4996f5;
+  font-size: 0.175rem;
+}
+
+.sales .line {
+  width: 100%;
+  height: 100%;
+}
+
+.line {
+  height: 2.5rem;
+}
